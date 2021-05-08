@@ -1,6 +1,8 @@
 #include "UI/UI.h"
+#include "BST/bst.h"
 
 int main() {
-    initialMessage();
+    test();
+//    initialMessage();
     return 0;
 }

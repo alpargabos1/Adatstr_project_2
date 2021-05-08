@@ -6,13 +6,15 @@
 
 #IncludeRegexTransform: 
 
-D:/Study/Github/Adatstr_project_2/UI/UI.c
-UI.h
-D:/Study/Github/Adatstr_project_2/UI/UI.h
+D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/BST/bst.c
+bst.h
+D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/BST/bst.h
 
-D:/Study/Github/Adatstr_project_2/UI/UI.h
+D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/BST/bst.h
 stdio.h
 -
 stdlib.h
+-
+stdbool.h
 -
 
