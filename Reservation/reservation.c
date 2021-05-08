@@ -4,8 +4,13 @@
 
 #include "reservation.h"
 
-RESERVATION createReservation(char *name, char *brand){
+RESERVATION createReservation(char *name, char *brand,int day){
     RESERVATION newReserv;
+/*
+    char secu[4];
+    itoa(day,secu,10);
+    */
+
     strcpy(newReserv.name,name);
     strcpy(newReserv.brand,brand);
     return newReserv;

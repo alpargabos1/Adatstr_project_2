@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "Adatstr_project_2.exe"
   "Adatstr_project_2.exe.manifest"
   "Adatstr_project_2.pdb"
+  "CMakeFiles/Adatstr_project_2.dir/AdminList/admin.c.obj"
   "CMakeFiles/Adatstr_project_2.dir/BST/bst.c.obj"
   "CMakeFiles/Adatstr_project_2.dir/Reservation/reservation.c.obj"
   "CMakeFiles/Adatstr_project_2.dir/UI/UI.c.obj"

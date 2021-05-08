@@ -1,8 +1,13 @@
 #include "UI/UI.h"
-#include "BST/bst.h"
 
 int main() {
-    test();
-//    initialMessage();
+    adminType* adminStack;
+    adminStack=initializeAdmin();
+
+    if(defaultSetup(&adminStack)==false){
+        printf("err: all");
+        return 0;
+    }
+    initialMessage(&adminStack);
     return 0;
 }

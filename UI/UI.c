@@ -1,11 +1,11 @@
 //
-// Created by Golden on 2021-05-07.
+// Created by David on 2021-05-07.
 //
 
 #include "UI.h"
 
 
-void initialMessage(){
+void initialMessage(adminType** adminStack){
     int logInChoice;
 
     printf("\n=========================================================================\n");
@@ -26,35 +26,35 @@ void initialMessage(){
 
     switch(logInChoice){
         case 1:
-            adminScreenLog();
+            adminScreenLog(adminStack);
             break;
         case 2:
-            guestScreenOptions();
+            guestScreenOptions(adminStack);
             break;
         case 0:
-            endMessage();
+            endMessage(adminStack);
             break;
     }
 }
 
-void endMessage(){
+void endMessage(adminType** adminStack){
     printf("\n=========================================================================\n");
     printf("|\t\tTHANK YOU FOR USING OUR APPLICATION!\t\t\t|\n|\t\t\tSee you soon.\t\t\t\t\t|");
     printf("\n=========================================================================\n");
 }
 
-void adminScreenLog(){
+void adminScreenLog(adminType** adminStack){
     char *username,*password;
     int choice;
 
-    username=(char*)calloc(10,sizeof(char));
-    password=(char*)calloc(10,sizeof(char));
+    username=(char*)calloc(20,sizeof(char));
+    password=(char*)calloc(20,sizeof(char));
     if(username==NULL || password==NULL){
         printf("err: all");
     }
 
     printf("\n=========================================================================\n");
-    printf("|\tIn order to log in as an admin,\t\t\t\t\t|\n|\ta USERNAME and a PASSWORD (All found in the README.md file)\t|\n|\tis required.\t\t\t\t\t\t\t|\n");
+    printf("|\tIn order to log in as an admin,\t\t\t\t\t|\n|\ta USERNAME and a PASSWORD (Default found in the README.md file)\t|\n|\tis required.\t\t\t\t\t\t\t|\n");
     printf("|\t\t\t\t\t\t\t\t\t|\n");
     printf("|\t(0)Back\t\t\t\t\t\t\t\t|\n");
     printf("|\t(1)Proceed\t\t\t\t\t\t\t|\n");
@@ -65,27 +65,47 @@ void adminScreenLog(){
 
     switch(choice) {
         case 0:
-            initialMessage();
+            initialMessage(adminStack);
             break;
         case 1:
             printf("\n\tUsername:");
             scanf("%s", username);
+            if(stackNameSearch(adminStack,username)==false){
+                printf("\n=========================================================================\n");
+                printf("|\tNo such username can be found in our database...\t\t|");
+                initialMessage(adminStack);
+                break;
+            }
             printf("\n\tPassword:");
             scanf("%s", password);
+            if(stackPwSearch(adminStack,password,username)==false){
+                printf("\n=========================================================================\n");
+                printf("|\tIncorrect password\t\t\t\t\t\t|");
+                initialMessage(adminStack);
+                break;
+            }
 
-            adminScreenOptions();
+            adminScreenOptions(adminStack);
             break;
     }
 }
 
-void adminScreenOptions(){
+void adminScreenOptions(adminType** adminStack){
     int choice;
+    char *username,*password;
+
+    username=(char*)calloc(20,sizeof(char));
+    password=(char*)calloc(20,sizeof(char));
+    if(username==NULL || password==NULL){
+        printf("err: all");
+    }
 
     printf("\n=========================================================================\n");
     printf("|\tYou have logged in as an admin.\t\t\t\t\t|\n|\tYour options are as follows:\t\t\t\t\t|\n");
     printf("|\t\t(1)List all scheduled dates.\t\t\t\t|\n");
     printf("|\t\t(2)Modify or delete a specific scheduled date.\t\t|\n");
     printf("|\t\t(3)Add a new admin account.\t\t\t\t|\n");
+    printf("|\t\t(4)List all the admin accounts.\t\t\t\t|\n");
     printf("|\t\t\t\t\t\t\t\t\t|\n");
     printf("|\t(0)Back\t\t\t\t\t\t\t\t|\n");
     printf("|\t\t\t\t\t\t\t\t\t|");
@@ -95,21 +115,32 @@ void adminScreenOptions(){
 
     switch(choice) {
         case 0:
-            initialMessage();
+            initialMessage(adminStack);
             break;
         case 1:
-
+            adminScreenOptions(adminStack);
             break;
         case 2:
-
+            adminScreenOptions(adminStack);
             break;
         case 3:
-
+            printf("\n\tUsername:");
+            scanf("%s", username);
+            printf("\n\tPassword:");
+            scanf("%s", password);
+            push(adminStack,username,password);
+            adminScreenOptions(adminStack);
+            break;
+        case 4:
+            printf("\n=========================================================================");
+            printAdmins(adminStack);
+            printf("\n=========================================================================\n");
+            adminScreenOptions(adminStack);
             break;
     }
 }
 
-void guestScreenOptions(){
+void guestScreenOptions(adminType** adminStack){
     int choice;
 
     printf("\n=========================================================================\n");
@@ -126,16 +157,16 @@ void guestScreenOptions(){
 
     switch(choice) {
         case 0:
-            initialMessage();
+            initialMessage(adminStack);
             break;
         case 1:
-
+            initialMessage(adminStack);
             break;
         case 2:
-
+            initialMessage(adminStack);
             break;
         case 3:
-
+            initialMessage(adminStack);
             break;
     }
 }

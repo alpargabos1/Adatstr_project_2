@@ -12,6 +12,7 @@
 typedef struct RESERVATION {
     char name[30];
     char brand[20];
+    char securityCode[4];
 } RESERVATION;
 
 typedef struct ReservationArray {
@@ -22,7 +23,7 @@ typedef struct ReservationArray {
     RESERVATION res4;
 } ReservationArray;
 
-RESERVATION createReservation(char *, char *);
+RESERVATION createReservation(char *, char *,int);
 
 ReservationArray *createReservArray();
 
