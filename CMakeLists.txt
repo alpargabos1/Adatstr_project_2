@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.17.5)
 project(Adatstr_project_2 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(Adatstr_project_2 main.c)
+add_executable(Adatstr_project_2 main.c UI/UI.c UI/UI.h)
