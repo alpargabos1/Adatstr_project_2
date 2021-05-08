@@ -15,7 +15,7 @@ Node *create(int value) {
     root->day = value;
     root->left = NULL;
     root->right = NULL;
-    root->reservation = createReservArray();
+    root->reservation = createReservArray(root->day);
     return root;
 }
 
