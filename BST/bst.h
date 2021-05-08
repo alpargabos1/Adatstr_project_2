@@ -8,10 +8,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "../Reservation/reservation.h"
 
 typedef struct Node {
-    int info;
+    int day;
     struct Node *left, *right;
+    ReservationArray *reservation;
 } Node;
 
 Node *create(int);

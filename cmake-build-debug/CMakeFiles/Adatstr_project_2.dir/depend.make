@@ -3,6 +3,10 @@
 
 CMakeFiles/Adatstr_project_2.dir/BST/bst.c.obj: ../BST/bst.c
 CMakeFiles/Adatstr_project_2.dir/BST/bst.c.obj: ../BST/bst.h
+CMakeFiles/Adatstr_project_2.dir/BST/bst.c.obj: ../Reservation/reservation.h
+
+CMakeFiles/Adatstr_project_2.dir/Reservation/reservation.c.obj: ../Reservation/reservation.c
+CMakeFiles/Adatstr_project_2.dir/Reservation/reservation.c.obj: ../Reservation/reservation.h
 
 CMakeFiles/Adatstr_project_2.dir/UI/UI.c.obj: ../UI/UI.c
 CMakeFiles/Adatstr_project_2.dir/UI/UI.c.obj: ../UI/UI.h

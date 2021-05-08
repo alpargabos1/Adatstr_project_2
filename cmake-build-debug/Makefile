@@ -168,6 +168,33 @@ BST/bst.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Adatstr_project_2.dir\build.make CMakeFiles/Adatstr_project_2.dir/BST/bst.c.s
 .PHONY : BST/bst.c.s
 
+Reservation/reservation.obj: Reservation/reservation.c.obj
+
+.PHONY : Reservation/reservation.obj
+
+# target to build an object file
+Reservation/reservation.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Adatstr_project_2.dir\build.make CMakeFiles/Adatstr_project_2.dir/Reservation/reservation.c.obj
+.PHONY : Reservation/reservation.c.obj
+
+Reservation/reservation.i: Reservation/reservation.c.i
+
+.PHONY : Reservation/reservation.i
+
+# target to preprocess a source file
+Reservation/reservation.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Adatstr_project_2.dir\build.make CMakeFiles/Adatstr_project_2.dir/Reservation/reservation.c.i
+.PHONY : Reservation/reservation.c.i
+
+Reservation/reservation.s: Reservation/reservation.c.s
+
+.PHONY : Reservation/reservation.s
+
+# target to generate assembly for a file
+Reservation/reservation.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Adatstr_project_2.dir\build.make CMakeFiles/Adatstr_project_2.dir/Reservation/reservation.c.s
+.PHONY : Reservation/reservation.c.s
+
 UI/UI.obj: UI/UI.c.obj
 
 .PHONY : UI/UI.obj
@@ -234,6 +261,9 @@ help:
 	@echo ... BST/bst.obj
 	@echo ... BST/bst.i
 	@echo ... BST/bst.s
+	@echo ... Reservation/reservation.obj
+	@echo ... Reservation/reservation.i
+	@echo ... Reservation/reservation.s
 	@echo ... UI/UI.obj
 	@echo ... UI/UI.i
 	@echo ... UI/UI.s
