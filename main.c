@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include "UI/UI.h"
 
 int main() {
-    printf("Hello, World!\n");
+    initialMessage();
     return 0;
 }
