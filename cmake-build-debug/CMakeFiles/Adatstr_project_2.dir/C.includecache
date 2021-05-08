@@ -17,4 +17,14 @@ stdlib.h
 -
 stdbool.h
 -
+../Reservation/reservation.h
+D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/Reservation/reservation.h
+
+D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/Reservation/reservation.h
+stdlib.h
+-
+stdio.h
+-
+string.h
+-
 

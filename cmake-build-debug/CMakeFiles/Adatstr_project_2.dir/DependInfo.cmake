@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/BST/bst.c" "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/BST/bst.c.obj"
+  "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/Reservation/reservation.c" "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/Reservation/reservation.c.obj"
   "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/UI/UI.c" "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/UI/UI.c.obj"
   "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/main.c" "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/main.c.obj"
   )

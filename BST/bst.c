@@ -12,10 +12,10 @@ Node *create(int value) {
         return 0;
     }
     ///mindent lenullazunk + az erteket felveszi a gyoker info
-    root->info = value;
+    root->day = value;
     root->left = NULL;
     root->right = NULL;
-
+    root->reservation = createReservArray();
     return root;
 }
 
@@ -24,7 +24,7 @@ Node *insert(Node *tree, int key) {
         return create(key);
 
     /* Otherwise, recur down the tree */
-    if (key < tree->info)
+    if (key < tree->day)
         tree->left = insert(tree->left, key);
     else
         tree->right = insert(tree->right, key);
@@ -38,7 +38,7 @@ bool Find(Node *root, int value) {
     if (root == NULL) {
         return false;
     }
-    if (value == root->info) {
+    if (value == root->day) {
         return true;
     }
     bool result1 = Find(root->left, value);
@@ -72,16 +72,19 @@ Node *Delete(Node *root, int key) {
     if (root == NULL)
         return root;
 
+    if(!Find(root,key)){
+        return root;
+    }
     // If the key to be deleted
     // is smaller than the root's
     // key, then it lies in left subtree
-    if (key < root->info)
+    if (key < root->day)
         root->left = Delete(root->left, key);
 
         // If the key to be deleted
         // is greater than the root's
         // key, then it lies in right subtree
-    else if (key > root->info)
+    else if (key > root->day)
         root->right = Delete(root->right, key);
 
         // if key is same as root's key,
@@ -106,10 +109,10 @@ Node *Delete(Node *root, int key) {
 
         // Copy the inorder
         // successor's content to this node
-        root->info = temp->info;
+        root->day = temp->day;
 
         // Delete the inorder successor
-        root->right = Delete(root->right, temp->info);
+        root->right = Delete(root->right, temp->day);
     }
     return root;
 }
@@ -118,22 +121,22 @@ void inorder(Node *root) {
     //rekurziv meghivasokkal megyunk vegig
     if (root != NULL) {
         inorder(root->left);
-        printf("%d ", root->info);
+        printf("%d ", root->day);
         inorder(root->right);
     }
 }
 
-void test(){
+void test() {
     Node *root = NULL;
 
     int temp;
-    for(int i=0; i<5; i++){
+    for (int i = 0; i < 5; i++) {
         printf("Datum: \n");
-        scanf("%d",&temp);
-        root = insert(root,temp);
+        scanf("%d", &temp);
+        root = insert(root, temp);
     }
     inorder(root);
-    Delete(root,11);
+    Delete(root, 11);
     inorder(root);
-    printf(Find(root,12) ? "Yes" : "No");
+    printf(Find(root, 12) ? "Yes" : "No");
 }
