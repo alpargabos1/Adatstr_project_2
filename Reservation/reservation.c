@@ -22,7 +22,7 @@ ReservationArray *createReservArray() {
     if(!newRes){
         return NULL;
     }
-    newRes->freeAppointments = 0;
+    newRes->freeAppointments = 4;
 
     return newRes;
 }

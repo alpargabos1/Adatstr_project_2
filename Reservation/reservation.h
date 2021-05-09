@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
+
 
 typedef struct RESERVATION {
     char name[30];
@@ -17,14 +19,13 @@ typedef struct RESERVATION {
 
 typedef struct ReservationArray {
     int freeAppointments;
-    RESERVATION res1;
-    RESERVATION res2;
-    RESERVATION res3;
-    RESERVATION res4;
+    RESERVATION reservations[4];
+
 } ReservationArray;
 
 RESERVATION createReservation(char *, char *,int);
 
 ReservationArray *createReservArray();
+
 
 #endif //ADATSTR_PROJECT_2_RESERVATION_H
