@@ -31,7 +31,7 @@ bool Find(Node *, int);
 
 void inorderDates(Node *fa);
 
-bool checkForFreeAppiontment(Node *);
+bool checkForFreeAppointment(Node *);
 
 void scheduleOnFirstAvaDay(Node **);
 

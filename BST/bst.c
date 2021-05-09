@@ -46,7 +46,6 @@ bool Find(Node *root, int value) {
     if (result1) return true;
     bool result2 = Find(root->right, value);
     return result2;
-
 }
 
 Node *search(Node *root, int key) {
@@ -133,18 +132,19 @@ Node *Delete(Node *root, int key) {
 
 void inorderDates(Node *root) {
     //show all scheduled dates
+    //printf("\n=========================================================================\n");
     if (root != NULL) {
         inorderDates(root->left);
-        printf("\nDAY: %d (free spaces: %d)\n ", root->day, root->reservation->freeAppointments);
+        printf("\n\tDay: %d (free spaces: %d)\n ", root->day, root->reservation->freeAppointments);
         for (int i = 4 - (*root).reservation->freeAppointments - 1; i >=0; i--) {
-            printf("\t%.30s | %.20s\n", (*root).reservation->reservations[i].name,
+            printf("\t\t%.30s | %.20s\n", (*root).reservation->reservations[i].name,
                    (*root).reservation->reservations[i].brand);
         }
         inorderDates(root->right);
     }
 }
 
-bool checkForFreeAppiontment(Node *day) {
+bool checkForFreeAppointment(Node *day) {
     if (day->reservation->freeAppointments > 0) {
         return true;
     }
@@ -155,29 +155,31 @@ void scheduleOnFirstAvaDay(Node **database) {
     //searching for the first available day
     for (int i = 1; i <= 30; i++) {
         if (Find(*database, i)) {
-            if (checkForFreeAppiontment(search(*database, i))) {
-                printf("\nFirst available day is: %d", i);
+            if (checkForFreeAppointment(search(*database, i))) {
+                printf("\n\tFirst available day is: %d", i);
                 char nameToAdd[30], brandToAdd[20];
-                printf("\n\tName: ");
+                printf("\n\t\tName for appointment: ");
                 scanf("%s", nameToAdd);
-                printf("\tBrand: ");
+                printf("\n\t\tVehicle Brand: ");
                 scanf("%s", brandToAdd);
                 (*database)->reservation->reservations[4 - (*database)->reservation->freeAppointments] = createReservation(nameToAdd,brandToAdd,i);
                 (*database)->reservation->freeAppointments--;
-                printf("\nYou succefully added the following appointment:\n\tDay: %.3d\n\t\t%s | %s", (*database)->day,
+                printf("\n=========================================================================\n");
+                printf("|\tYou have successfully added the following appointment:\t\t|\n|\t\tDay: %3d\n|\t\t\t%s | %s", (*database)->day,
                        nameToAdd, brandToAdd);
                 return;
             }
         } else {
-            printf("\nFirst available day is: %d", i);
+            printf("\n\tFirst available day is: %d", i);
             char nameToAdd[30], brandToAdd[20];
-            printf("\n\tName: ");
+            printf("\n\t\tName for appointment: ");
             scanf("%s", nameToAdd);
-            printf("\tBrand: ");
+            printf("\n\t\tVehicle Brand: ");
             scanf("%s", brandToAdd);
             (*database) = insert(*database, i, nameToAdd, brandToAdd);
             (*database)->reservation->freeAppointments--;
-            printf("\nYou succefully added the following appointment:\n\tDay: %3d\n\t\t%s | %s", (*database)->day,
+            printf("\n=========================================================================\n");
+            printf("|\tYou have successfully added the following appointment:\t\t|\n|\t\tDay: %3d\n|\t\t\t%s | %s", (*database)->day,
                    nameToAdd, brandToAdd);
             return;
         }
@@ -187,45 +189,60 @@ void scheduleOnFirstAvaDay(Node **database) {
 
 bool scheduleOnSelectedDay(Node **database){
     int day;
-    printf("\nDAY:\n");
+    printf("\n\tChoose a day of the month that you see fitting (1 to 30):");
     scanf("%d",&day);
+    if(day>30 || day<1){
+        printf("\n=========================================================================\n");
+        printf("|\tInvalid input!\t\t\t\t\t\t\t|");
+        return false;
+    }
     if (Find(*database, day)) {
-        if (checkForFreeAppiontment(search(*database, day))) {
-            printf("\nFirst available day is: %d", day);
+        if (checkForFreeAppointment(search(*database, day))) {
+            printf("\nYou have selected day: %d", day);
             char nameToAdd[30], brandToAdd[20];
-            printf("\n\tName: ");
+            printf("\n\t\tName for appointment: ");
             scanf("%s", nameToAdd);
-            printf("\tBrand: ");
+            printf("\n\t\tVehicle Brand: ");
             scanf("%s", brandToAdd);
             (*database)->reservation->reservations[4 - (*database)->reservation->freeAppointments] = createReservation(nameToAdd,brandToAdd,day);
             (*database)->reservation->freeAppointments--;
-            printf("\nYou succefully added the following appointment:\n\tDay: %.3d\n\t\t%s | %s", (*database)->day,
+            printf("\n=========================================================================\n");
+            printf("|\tYou have successfully added the following appointment:\t\t|\n|\t\tDay: %3d\n|\t\t\t%s | %s", (*database)->day,
                    nameToAdd, brandToAdd);
             return true;
         }
         else{
-            printf("\nDay is full!");
+            printf("\n=========================================================================\n");
+            printf("|\tDay is full!\t\t\t\t\t\t\t|");
             return false;
         }
     }
     char nameToAdd[30], brandToAdd[20];
-    printf("\n\tName: ");
+    printf("\n\t\tName for appointment: ");
     scanf("%s", nameToAdd);
-    printf("\tBrand: ");
+    printf("\n\t\tVehicle Brand: ");
     scanf("%s", brandToAdd);
     (*database) = insert(*database, day, nameToAdd, brandToAdd);
     (*database)->reservation->freeAppointments--;
-    printf("\nYou succefully added the following appointment:\n\tDay: %3d\n\t\t%s | %s", (*database)->day,
+    printf("\n=========================================================================\n");
+    printf("|\tYou have successfully added the following appointment:\t\t|\n|\t\tDay: %3d\n|\t\t\t%s | %s", (*database)->day,
            nameToAdd, brandToAdd);
     return true;
 }
 
 void deleteDay(Node** database){
     int day;
-    printf("\nDAY to delete: ");
+    printf("\n\tDay to delete (1 to 30): ");
     scanf("%d",&day);
-    Delete(*database,day);
-    printf("\n%d day has been deleted!\n");
+    if(!search(*database,day)){
+        printf("\n=========================================================================\n");
+        printf("|\tThis day is nonexistent in the database.\t\t\t|");
+    }
+    else{
+        Delete(*database,day);
+        printf("\n=========================================================================\n");
+        printf("|\tDay %d has been deleted!\t\t\t\t\t\t|",day);
+    }
 }
 
 void test() {

@@ -25,7 +25,7 @@ typedef struct ReservationArray {
 
 RESERVATION createReservation(char *, char *,int);
 
-ReservationArray *createReservArray();
+ReservationArray *createReservArray(int);
 
 
 #endif //ADATSTR_PROJECT_2_RESERVATION_H

@@ -19,7 +19,6 @@ void endMessage(adminType**);
 
 void adminScreenLog(adminType**, Node*);
 void adminScreenOptions(adminType**, Node*);
-void addNewAdmin(adminType**, Node*);
 
 void guestScreenOptions(adminType**, Node*);
 

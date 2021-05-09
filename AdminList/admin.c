@@ -20,6 +20,14 @@ adminType *initializeAdmin() {
 
     return stack;
 }
+void endAdmin(adminType** stack){
+    while ((*stack)->next != NULL) {
+        free((*stack)->username);
+        free((*stack)->password);
+        (*stack) = (*stack)->next;
+    }
+    (*stack)->next = NULL;
+}
 
 bool defaultSetup(adminType **adm) {
     adminType *temp;
@@ -67,7 +75,7 @@ bool push(adminType **adm, char *un, char *pw) {
 void printAdmins(adminType **adm) {
     adminType *p = (*adm);
     while (p->next != NULL) {
-        printf("\n|\t%s", p->username);
+        printf("\n|\t\t%s", p->username);
         p = p->next;
     }
 }

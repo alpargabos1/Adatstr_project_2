@@ -8,9 +8,8 @@ int main() {
         printf("err: all");
         return 0;
     }
-
     Node *database = NULL;
     initialMessage(&adminStack, database);
-//    test();
+    database = NULL;
     return 0;
 }
