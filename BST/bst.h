@@ -17,23 +17,25 @@ typedef struct Node {
     ReservationArray *reservation;
 } Node;
 
-Node *create(int, char*, char*);
+Node *create(int, char *, char *);
 
-Node *insert(Node *, int, char*, char*);
+Node *insert(Node *, int, char *, char *);
 
 Node *minValueNode(struct Node *);
 
 Node *Delete(Node *, int);
 
-Node* search(Node*, int);
+Node *search(Node *, int);
 
 bool Find(Node *, int);
 
 void inorderDates(Node *fa);
 
-bool checkForFreeAppiontment(Node*);
+bool checkForFreeAppiontment(Node *);
 
 void scheduleOnFirstAvaDay(Node **);
+
+bool scheduleOnSelectedDay(Node **);
 
 void test();
 
