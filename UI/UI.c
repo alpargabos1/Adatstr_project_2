@@ -103,7 +103,7 @@ void adminScreenOptions(adminType **adminStack, Node *database) {
     printf("\n=========================================================================\n");
     printf("|\tYou have logged in as an admin.\t\t\t\t\t|\n|\tYour options are as follows:\t\t\t\t\t|\n");
     printf("|\t\t(1)List all scheduled dates.\t\t\t\t|\n");
-    printf("|\t\t(2)Modify or delete a specific scheduled date.\t\t|\n");
+    printf("|\t\t(2)Delete a specific scheduled date.\t\t|\n");
     printf("|\t\t(3)Add a new admin account.\t\t\t\t|\n");
     printf("|\t\t(4)List all the admin accounts.\t\t\t\t|\n");
     printf("|\t\t\t\t\t\t\t\t\t|\n");
@@ -121,6 +121,7 @@ void adminScreenOptions(adminType **adminStack, Node *database) {
             inorderDates(database);
             break;
         case 2:
+            deleteDay(&database);
             adminScreenOptions(adminStack, database);
             break;
         case 3:
