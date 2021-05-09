@@ -3,6 +3,7 @@
 //
 
 #include "UI.h"
+#include "..\AdminList\admin.h"
 
 
 void initialMessage(adminType** adminStack){
