@@ -5,5 +5,5 @@ Egy autószerelő műhely foglalásrendszerét foglalja magába a program. Egy h
 
 A bináris kereső fát a foglalásokként implementáltuk, illetve az admin fiókok egy egyszeresen láncolt veremben vannak tárolva (más tanult adatstruktúra típus).
 
-Az alapértelmezett, már létező, default Admin információ:   username: adminexample
+Az alapértelmezett, már létező, default Admin információ:   username: adminexample;
                                                             password: 12345
