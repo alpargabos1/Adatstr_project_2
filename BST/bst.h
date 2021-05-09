@@ -5,10 +5,11 @@
 #ifndef ADATSTR_PROJECT_2_BST_H
 #define ADATSTR_PROJECT_2_BST_H
 
+#include "..\Reservation\reservation.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "../Reservation/reservation.h"
+
 
 typedef struct Node {
     int day;
@@ -16,17 +17,23 @@ typedef struct Node {
     ReservationArray *reservation;
 } Node;
 
-Node *create(int);
+Node *create(int, char*, char*);
 
-Node *insert(Node *, int);
+Node *insert(Node *, int, char*, char*);
 
 Node *minValueNode(struct Node *);
 
 Node *Delete(Node *, int);
 
+Node* search(Node*, int);
+
 bool Find(Node *, int);
 
-void inorder(Node *fa);
+void inorderDates(Node *fa);
+
+bool checkForFreeAppiontment(Node*);
+
+void scheduleOnFirstAvaDay(Node **);
 
 void test();
 

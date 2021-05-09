@@ -5,20 +5,22 @@
 #ifndef ADATSTR_PROJECT_2_UI_H
 #define ADATSTR_PROJECT_2_UI_H
 
-#endif //ADATSTR_PROJECT_2_UI_H
 
-#include "..\BST\bst.h"
-#include "..\AdminList\admin.h"
+
+#include "../BST/bst.h"
+#include "../AdminList/admin.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
 
-void initialMessage(adminType**);
+void initialMessage(adminType**, Node*);
 void endMessage(adminType**);
 
-void adminScreenLog(adminType**);
-void adminScreenOptions(adminType**);
-void addNewAdmin(adminType**);
+void adminScreenLog(adminType**, Node*);
+void adminScreenOptions(adminType**, Node*);
+void addNewAdmin(adminType**, Node*);
 
-void guestScreenOptions(adminType**);
+void guestScreenOptions(adminType**, Node*);
+
+#endif //ADATSTR_PROJECT_2_UI_H

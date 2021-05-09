@@ -3,10 +3,9 @@
 //
 
 #include "UI.h"
-#include "..\AdminList\admin.h"
 
 
-void initialMessage(adminType** adminStack){
+void initialMessage(adminType **adminStack, Node *database) {
     int logInChoice;
 
     printf("\n=========================================================================\n");
@@ -23,14 +22,14 @@ void initialMessage(adminType** adminStack){
     printf("|\t\t\t\t\t\t\t\t\t|");
     printf("\n=========================================================================\n");
     printf("\tAnswer:");
-    scanf("%i",&logInChoice);
+    scanf("%i", &logInChoice);
 
-    switch(logInChoice){
+    switch (logInChoice) {
         case 1:
-            adminScreenLog(adminStack);
+            adminScreenLog(adminStack, database);
             break;
         case 2:
-            guestScreenOptions(adminStack);
+            guestScreenOptions(adminStack, database);
             break;
         case 0:
             endMessage(adminStack);
@@ -38,19 +37,19 @@ void initialMessage(adminType** adminStack){
     }
 }
 
-void endMessage(adminType** adminStack){
+void endMessage(adminType **adminStack) {
     printf("\n=========================================================================\n");
     printf("|\t\tTHANK YOU FOR USING OUR APPLICATION!\t\t\t|\n|\t\t\tSee you soon.\t\t\t\t\t|");
     printf("\n=========================================================================\n");
 }
 
-void adminScreenLog(adminType** adminStack){
-    char *username,*password;
+void adminScreenLog(adminType **adminStack, Node *database) {
+    char *username, *password;
     int choice;
 
-    username=(char*)calloc(20,sizeof(char));
-    password=(char*)calloc(20,sizeof(char));
-    if(username==NULL || password==NULL){
+    username = (char *) calloc(20, sizeof(char));
+    password = (char *) calloc(20, sizeof(char));
+    if (username == NULL || password == NULL) {
         printf("err: all");
     }
 
@@ -62,42 +61,42 @@ void adminScreenLog(adminType** adminStack){
     printf("|\t\t\t\t\t\t\t\t\t|");
     printf("\n=========================================================================\n");
     printf("\tAnswer:");
-    scanf("%i",&choice);
+    scanf("%i", &choice);
 
-    switch(choice) {
+    switch (choice) {
         case 0:
-            initialMessage(adminStack);
+            initialMessage(adminStack, database);
             break;
         case 1:
             printf("\n\tUsername:");
             scanf("%s", username);
-            if(stackNameSearch(adminStack,username)==false){
+            if (stackNameSearch(adminStack, username) == false) {
                 printf("\n=========================================================================\n");
                 printf("|\tNo such username can be found in our database...\t\t|");
-                initialMessage(adminStack);
+                initialMessage(adminStack, database);
                 break;
             }
             printf("\n\tPassword:");
             scanf("%s", password);
-            if(stackPwSearch(adminStack,password,username)==false){
+            if (stackPwSearch(adminStack, password, username) == false) {
                 printf("\n=========================================================================\n");
                 printf("|\tIncorrect password\t\t\t\t\t\t|");
-                initialMessage(adminStack);
+                initialMessage(adminStack, database);
                 break;
             }
 
-            adminScreenOptions(adminStack);
+            adminScreenOptions(adminStack, database);
             break;
     }
 }
 
-void adminScreenOptions(adminType** adminStack){
+void adminScreenOptions(adminType **adminStack, Node *database) {
     int choice;
-    char *username,*password;
+    char *username, *password;
 
-    username=(char*)calloc(20,sizeof(char));
-    password=(char*)calloc(20,sizeof(char));
-    if(username==NULL || password==NULL){
+    username = (char *) calloc(20, sizeof(char));
+    password = (char *) calloc(20, sizeof(char));
+    if (username == NULL || password == NULL) {
         printf("err: all");
     }
 
@@ -112,36 +111,36 @@ void adminScreenOptions(adminType** adminStack){
     printf("|\t\t\t\t\t\t\t\t\t|");
     printf("\n=========================================================================\n");
     printf("\tAnswer:");
-    scanf("%i",&choice);
+    scanf("%i", &choice);
 
-    switch(choice) {
+    switch (choice) {
         case 0:
-            initialMessage(adminStack);
+            initialMessage(adminStack, database);
             break;
         case 1:
-            adminScreenOptions(adminStack);
+            inorderDates(database);
             break;
         case 2:
-            adminScreenOptions(adminStack);
+            adminScreenOptions(adminStack, database);
             break;
         case 3:
             printf("\n\tUsername:");
             scanf("%s", username);
             printf("\n\tPassword:");
             scanf("%s", password);
-            push(adminStack,username,password);
-            adminScreenOptions(adminStack);
+            push(adminStack, username, password);
+            adminScreenOptions(adminStack, database);
             break;
         case 4:
             printf("\n=========================================================================");
             printAdmins(adminStack);
             printf("\n=========================================================================\n");
-            adminScreenOptions(adminStack);
+            adminScreenOptions(adminStack, database);
             break;
     }
 }
 
-void guestScreenOptions(adminType** adminStack){
+void guestScreenOptions(adminType **adminStack, Node *database) {
     int choice;
 
     printf("\n=========================================================================\n");
@@ -154,20 +153,22 @@ void guestScreenOptions(adminType** adminStack){
     printf("|\t\t\t\t\t\t\t\t\t|");
     printf("\n=========================================================================\n");
     printf("\tAnswer:");
-    scanf("%i",&choice);
+    scanf("%i", &choice);
 
-    switch(choice) {
+    switch (choice) {
         case 0:
-            initialMessage(adminStack);
+            initialMessage(adminStack, database);
             break;
         case 1:
-            initialMessage(adminStack);
+            scheduleOnFirstAvaDay(&database);
+            initialMessage(adminStack, database);
+
             break;
         case 2:
-            initialMessage(adminStack);
+            initialMessage(adminStack, database);
             break;
         case 3:
-            initialMessage(adminStack);
+            initialMessage(adminStack, database);
             break;
     }
 }

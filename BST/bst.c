@@ -4,7 +4,7 @@
 
 #include "bst.h"
 
-Node *create(int value) {
+Node *create(int value, char *name, char *brand) {
     Node *root;
     root = (Node *) malloc(sizeof(Node));
     if (!root) {
@@ -16,18 +16,19 @@ Node *create(int value) {
     root->left = NULL;
     root->right = NULL;
     root->reservation = createReservArray(root->day);
+    root->reservation->reservations[0] = createReservation(name, brand, root->day);
     return root;
 }
 
-Node *insert(Node *tree, int key) {
+Node *insert(Node *tree, int key, char *name, char *brand) {
     if (tree == NULL)
-        return create(key);
+        return create(key, name, brand);
 
     /* Otherwise, recur down the tree */
     if (key < tree->day)
-        tree->left = insert(tree->left, key);
+        tree->left = insert(tree->left, key, name, brand);
     else
-        tree->right = insert(tree->right, key);
+        tree->right = insert(tree->right, key, name, brand);
 
     /* return the (unchanged) node pointer */
     return tree;
@@ -46,6 +47,19 @@ bool Find(Node *root, int value) {
     bool result2 = Find(root->right, value);
     return result2;
 
+}
+
+Node *search(Node *root, int key) {
+    // Base Cases: root is null or key is present at root
+    if (root == NULL || root->day == key)
+        return root;
+
+    // Key is greater than root's key
+    if (root->day < key)
+        return search(root->right, key);
+
+    // Key is smaller than root's key
+    return search(root->left, key);
 }
 
 ///a legkisebb erteku csomopont visszateritese
@@ -72,7 +86,7 @@ Node *Delete(Node *root, int key) {
     if (root == NULL)
         return root;
 
-    if(!Find(root,key)){
+    if (!Find(root, key)) {
         return root;
     }
     // If the key to be deleted
@@ -93,11 +107,11 @@ Node *Delete(Node *root, int key) {
     else {
         // node with only one child or no child
         if (root->left == NULL) {
-            struct node *temp = root->right;
+            Node *temp = root->right;
             free(root);
-            return temp;
+            return (Node *) temp;
         } else if (root->right == NULL) {
-            struct node *temp = root->left;
+            struct Node *temp = root->left;
             free(root);
             return temp;
         }
@@ -117,26 +131,78 @@ Node *Delete(Node *root, int key) {
     return root;
 }
 
-void inorder(Node *root) {
-    //rekurziv meghivasokkal megyunk vegig
+void inorderDates(Node *root) {
+    //show all scheduled dates
     if (root != NULL) {
-        inorder(root->left);
-        printf("%d ", root->day);
-        inorder(root->right);
+        inorderDates(root->left);
+        printf("\nDAY: %d (free spaces: %d)\n ", root->day, root->reservation->freeAppointments);
+        for (int i = 4 - (*root).reservation->freeAppointments - 1; i >=0; i--) {
+            printf("\t%.30s | %.20s\n", (*root).reservation->reservations[i].name,
+                   (*root).reservation->reservations[i].brand);
+        }
+        inorderDates(root->right);
     }
+}
+
+bool checkForFreeAppiontment(Node *day) {
+    if (day->reservation->freeAppointments > 0) {
+        return true;
+    }
+    return false;
+}
+
+void scheduleOnFirstAvaDay(Node **database) {
+    //searching for the first available day
+    for (int i = 1; i <= 30; i++) {
+        if (Find(*database, i)) {
+            if (checkForFreeAppiontment(search(*database, i))) {
+                printf("\nFirst available day is: %d", i);
+                char nameToAdd[30], brandToAdd[20];
+                printf("\n\tName: ");
+                scanf("%s", nameToAdd);
+                printf("\tBrand: ");
+                scanf("%s", brandToAdd);
+                (*database)->reservation->reservations[4 - (*database)->reservation->freeAppointments] = createReservation(nameToAdd,brandToAdd,i);
+                (*database)->reservation->freeAppointments--;
+                printf("\nYou succefully added the following appointment:\n\tDay: %.3d\n\t\t%s | %s", (*database)->day,
+                       nameToAdd, brandToAdd);
+                return;
+            }
+        } else {
+            printf("\nFirst available day is: %d", i);
+            char nameToAdd[30], brandToAdd[20];
+            printf("\n\tName: ");
+            scanf("%s", nameToAdd);
+            printf("\tBrand: ");
+            scanf("%s", brandToAdd);
+            (*database) = insert(*database, i, nameToAdd, brandToAdd);
+            (*database)->reservation->freeAppointments--;
+            printf("\nYou succefully added the following appointment:\n\tDay: %3d\n\t\t%s | %s", (*database)->day,
+                   nameToAdd, brandToAdd);
+            return;
+        }
+    }
+
 }
 
 void test() {
     Node *root = NULL;
+    char n[30], b[20];
+    strcpy(n, "Lala");
+    strcpy(b, "BMW");
 
-    int temp;
-    for (int i = 0; i < 5; i++) {
-        printf("Datum: \n");
-        scanf("%d", &temp);
-        root = insert(root, temp);
-    }
-    inorder(root);
-    Delete(root, 11);
-    inorder(root);
-    printf(Find(root, 12) ? "Yes" : "No");
+    int temp = 1;
+    root = insert(root, temp, n, b);
+    root->reservation->reservations[1] = createReservation(n,n,1);
+    root->reservation->reservations[2] = createReservation(b,b,1);
+    inorderDates(root);
+//    for (int i = 0; i < 5; i++) {
+//        printf("Datum: \n");
+//        scanf("%d", &temp);
+//        root = insert(root, temp);
+//    }
+//    inorderDates(root);
+//    Delete(root, 11);
+//    inorderDates(root);
+//    printf(Find(root, 12) ? "Yes" : "No");
 }
