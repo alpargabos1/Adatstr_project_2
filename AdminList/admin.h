@@ -10,7 +10,7 @@
 #ifndef ADATSTR_PROJECT_2_ADMIN_H
 #define ADATSTR_PROJECT_2_ADMIN_H
 
-#endif //ADATSTR_PROJECT_2_ADMIN_H
+
 
 typedef struct{
     char *username;
@@ -28,3 +28,4 @@ bool stackNameSearch(adminType**,char*);
 bool stackPwSearch(adminType**,char*,char*);
 void printAdmins(adminType**);
 
+#endif //ADATSTR_PROJECT_2_ADMIN_H

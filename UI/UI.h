@@ -7,8 +7,8 @@
 
 #endif //ADATSTR_PROJECT_2_UI_H
 
-#include "D:\Study\Github\Adatstr_project_2\BST\bst.h"
-#include "D:\Study\Github\Adatstr_project_2\AdminList\admin.h"
+#include "..\BST\bst.h"
+#include "..\AdminList\admin.h"
 
 #include <stdio.h>
 #include <stdlib.h>

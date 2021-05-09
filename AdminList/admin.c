@@ -5,87 +5,93 @@
 #include "admin.h"
 
 
-adminType* initializeAdmin(){
-    adminType* stack;
-    stack=(adminType*)malloc(1*sizeof(adminType));
+adminType *initializeAdmin() {
+    adminType *stack;
+    stack = (adminType *) malloc(1 * sizeof(adminType));
 
-    if(stack==NULL){
+    if (stack == NULL) {
         printf("err: all");
         return false;
     }
-    stack->username=(char*)calloc(20,sizeof(char));
-    stack->password=(char*)calloc(20,sizeof(char));
+    stack->username = (char *) calloc(20, sizeof(char));
+    stack->password = (char *) calloc(20, sizeof(char));
 
-    stack->next=NULL;
+    stack->next = NULL;
 
     return stack;
 }
 
-bool defaultSetup(adminType** adm){
-    adminType* temp;
-    temp=(adminType*)malloc(sizeof(adminType));
-    temp->username=(char*)calloc(20,sizeof(char));
-    temp->password=(char*)calloc(20,sizeof(char));
-
-    if(temp==NULL){
+bool defaultSetup(adminType **adm) {
+    adminType *temp;
+    temp = (adminType *) malloc(sizeof(adminType));
+    if (temp == NULL) {
         printf("err: all");
         return false;
     }
+    temp->username = (char *) calloc(20, sizeof(char));
+    temp->password = (char *) calloc(20, sizeof(char));
 
-    strcpy(temp->username,"adminexample");
-    strcpy(temp->password,"12345");
+
+    strcpy(temp->username, "adminexample");
+    strcpy(temp->password, "12345");
 
 
     temp->next = (*adm);
-    (*adm)=temp;
+    (*adm) = temp;
 
     return true;
 }
 
-bool push(adminType** adm,char* un,char* pw){
-    adminType* temp;
-    temp=(adminType*)malloc(sizeof(adminType));
-    temp->username=(char*)calloc(20,sizeof(char));
-    temp->password=(char*)calloc(20,sizeof(char));
+bool push(adminType **adm, char *un, char *pw) {
+    adminType *temp;
+    temp = (adminType *) malloc(sizeof(adminType));
 
-    if(temp==NULL){
+    if (temp == NULL) {
         printf("err: all");
         return false;
     }
+    temp->username = (char *) calloc(20, sizeof(char));
+    temp->password = (char *) calloc(20, sizeof(char));
 
-    strcpy(temp->username,un);
-    strcpy(temp->password,pw);
 
-    temp->next =  (*adm);
-    (*adm)=temp;
+
+    strcpy(temp->username, un);
+    strcpy(temp->password, pw);
+
+    temp->next = (*adm);
+    (*adm) = temp;
 
     return true;
 }
 
-void printAdmins(adminType** adm){
-    while((*adm)->next!=NULL){
-        printf("\n|\t%s",(*adm)->username);
-        (*adm) =  (*adm)->next;
+void printAdmins(adminType **adm) {
+    adminType *p = (*adm);
+    while (p->next != NULL) {
+        printf("\n|\t%s", p->username);
+        p = p->next;
     }
 }
 
-bool stackNameSearch(adminType** adm,char* un){
-    while((*adm)->next!=NULL){
-        if(!strcmp((*adm)->username,un)){
+bool stackNameSearch(adminType **adm, char *un) {
+    adminType *p = (*adm);
+    while (p->next != NULL) {
+        if (!strcmp(p->username, un)) {
             return true;
         }
-        (*adm) =  (*adm)->next;
+        p = p->next;
     }
     return false;
 }
-bool stackPwSearch(adminType** adm,char* pw,char* un){
-    while((*adm)->next!=NULL){
-        if(!strcmp((*adm)->username,un)){
-            if(!strcmp((*adm)->password,pw)){
+
+bool stackPwSearch(adminType **adm, char *pw, char *un) {
+    adminType *p = (*adm);
+    while (p->next != NULL) {
+        if (!strcmp(p->username, un)) {
+            if (!strcmp(p->password, pw)) {
                 return true;
             }
         }
-        (*adm) =  (*adm)->next;
+        p = p->next;
     }
     return false;
 }
