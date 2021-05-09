@@ -220,16 +220,32 @@ bool scheduleOnSelectedDay(Node **database){
     return true;
 }
 
+void deleteDay(Node** database){
+    int day;
+    printf("\nDAY to delete: ");
+    scanf("%d",&day);
+    Delete(*database,day);
+    printf("\n%d day has been deleted!\n");
+}
+
 void test() {
     Node *root = NULL;
     char n[30], b[20];
     strcpy(n, "Lala");
     strcpy(b, "BMW");
 
-    int temp = 1;
-    root = insert(root, temp, n, b);
+    root = insert(root, 1, n, b);
     root->reservation->reservations[1] = createReservation(n,n,1);
     root->reservation->reservations[2] = createReservation(b,b,1);
+    root->reservation->freeAppointments -= 2;
+    strcpy(n, "LAjcsika");
+    strcpy(b, "Renault");
+    root->right = create(2,n,b);
+    root->right->reservation->reservations[1] = createReservation(n,n,1);
+    root->right->reservation->reservations[2] = createReservation(b,b,1);
+    root->right->reservation->freeAppointments -= 2;
+    inorderDates(root);
+    root = Delete(root,2);
     inorderDates(root);
 //    for (int i = 0; i < 5; i++) {
 //        printf("Datum: \n");

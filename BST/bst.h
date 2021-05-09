@@ -37,6 +37,8 @@ void scheduleOnFirstAvaDay(Node **);
 
 bool scheduleOnSelectedDay(Node **);
 
+void deleteDay(Node **);
+
 void test();
 
 #endif //ADATSTR_PROJECT_2_BST_H
