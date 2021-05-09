@@ -162,9 +162,9 @@ void guestScreenOptions(adminType **adminStack, Node *database) {
         case 1:
             scheduleOnFirstAvaDay(&database);
             initialMessage(adminStack, database);
-
             break;
         case 2:
+            scheduleOnSelectedDay(&database);
             initialMessage(adminStack, database);
             break;
         case 3:

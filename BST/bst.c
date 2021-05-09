@@ -185,6 +185,41 @@ void scheduleOnFirstAvaDay(Node **database) {
 
 }
 
+bool scheduleOnSelectedDay(Node **database){
+    int day;
+    printf("\nDAY:\n");
+    scanf("%d",&day);
+    if (Find(*database, day)) {
+        if (checkForFreeAppiontment(search(*database, day))) {
+            printf("\nFirst available day is: %d", day);
+            char nameToAdd[30], brandToAdd[20];
+            printf("\n\tName: ");
+            scanf("%s", nameToAdd);
+            printf("\tBrand: ");
+            scanf("%s", brandToAdd);
+            (*database)->reservation->reservations[4 - (*database)->reservation->freeAppointments] = createReservation(nameToAdd,brandToAdd,day);
+            (*database)->reservation->freeAppointments--;
+            printf("\nYou succefully added the following appointment:\n\tDay: %.3d\n\t\t%s | %s", (*database)->day,
+                   nameToAdd, brandToAdd);
+            return true;
+        }
+        else{
+            printf("\nDay is full!");
+            return false;
+        }
+    }
+    char nameToAdd[30], brandToAdd[20];
+    printf("\n\tName: ");
+    scanf("%s", nameToAdd);
+    printf("\tBrand: ");
+    scanf("%s", brandToAdd);
+    (*database) = insert(*database, day, nameToAdd, brandToAdd);
+    (*database)->reservation->freeAppointments--;
+    printf("\nYou succefully added the following appointment:\n\tDay: %3d\n\t\t%s | %s", (*database)->day,
+           nameToAdd, brandToAdd);
+    return true;
+}
+
 void test() {
     Node *root = NULL;
     char n[30], b[20];
