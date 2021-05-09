@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/AdminList/admin.c" "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/AdminList/admin.c.obj"
-  "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/BST/bst.c" "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/BST/bst.c.obj"
-  "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/Reservation/reservation.c" "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/Reservation/reservation.c.obj"
-  "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/UI/UI.c" "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/UI/UI.c.obj"
-  "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/main.c" "D:/Egyetem/CLion/Adatstrukturak/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/main.c.obj"
+  "D:/Study/Github/Adatstr_project_2/AdminList/admin.c" "D:/Study/Github/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/AdminList/admin.c.obj"
+  "D:/Study/Github/Adatstr_project_2/BST/bst.c" "D:/Study/Github/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/BST/bst.c.obj"
+  "D:/Study/Github/Adatstr_project_2/Reservation/reservation.c" "D:/Study/Github/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/Reservation/reservation.c.obj"
+  "D:/Study/Github/Adatstr_project_2/UI/UI.c" "D:/Study/Github/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/UI/UI.c.obj"
+  "D:/Study/Github/Adatstr_project_2/main.c" "D:/Study/Github/Adatstr_project_2/cmake-build-debug/CMakeFiles/Adatstr_project_2.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

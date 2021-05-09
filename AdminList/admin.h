@@ -20,6 +20,7 @@ typedef struct{
 
 ///primary
 adminType* initializeAdmin();
+void endAdmin(adminType**);
 bool defaultSetup(adminType**);
 bool push(adminType**,char*,char*);
 
